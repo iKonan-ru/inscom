@@ -1,0 +1,7 @@
+{% set blockClass = 'button' %}
+{% set blockTag = link ? 'a' : 'button' %}
+
+<{{ blockTag }} {% if link %}href="{{ link }}"{% endif %} class="
+    {{ bem(blockClass, [style]) }}
+    {{ parentClass ? bem(parentClass, blockClass) }}
+">{{ text }}</{{ blockTag }}>

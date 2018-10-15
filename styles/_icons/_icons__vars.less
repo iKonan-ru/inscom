@@ -1,0 +1,43 @@
+@import '../__vars';
+@import '_icons__constants';
+
+._i__use(@icon, @fontSize: inherit, @lineHeight: @fontSize, @pseudoElement: before) {
+    @selector: ~`(
+        ('@{pseudoElement}' === 'before') ? '::before' :
+        ('@{pseudoElement}' === 'after') ? '::after' :
+        ('@{pseudoElement}' === 'null') ? '' : ' @{pseudoElement}'
+    )`;
+
+    &@{selector} {
+        font-family: @_f__icons;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: normal;
+        line-height: inherit;
+        vertical-align: top;
+        text-decoration: none;
+        text-transform: none;
+        speak: none;
+        ._i__glyph(@icon);
+        ._i__size(@fontSize, @lineHeight);
+        ._f__smoothing();
+    }
+}
+
+._i__size(@fontSize, @lineHeight: @fontSize) {
+
+    & when (isnumber(@fontSize)), (@fontSize = inherit) {
+        font-size: @fontSize;
+    }
+
+    & when (isnumber(@lineHeight)), (@lineHeight = normal), (@lineHeight = inherit) {
+        line-height: @lineHeight;
+    }
+}
+
+._i__glyph(@icon) {
+
+    & when not (@icon = null) {
+        content: @icon;
+    }
+}

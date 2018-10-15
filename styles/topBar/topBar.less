@@ -1,0 +1,52 @@
+@import 'topBar__vars';
+
+.topBar {
+    .fixed(0, 0, null);
+    display: table;
+    width: 100%;
+    z-index: @_z__topBar;
+    height: @topBar__height;
+    box-shadow: 0 2px 4px rgba(174, 174, 174, 0.29);
+    background: @_c__white;
+
+    &__leftSide,
+    &__rightSide {
+        font-size: 0;
+
+        & > * {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+
+    &__leftSide {
+        margin-right: 30px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    &__rightSide {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: right;
+    }
+
+    &__logo {
+        margin-right: 40px;
+    }
+
+    &__userInfo {
+        margin-right: 80px;
+    }
+
+    &__exit {
+        @padding: (@topBar__height - @topBar__icon_exit__height) / 2;
+
+        color: @_c__brand_primary;
+        padding: ceil(@padding) ceil(@padding) floor(@padding) floor(@padding);
+        background-color: @_c__brand_secondary;
+        text-align: center;
+        cursor: pointer;
+        ._i__use(@_i__exit, @topBar__icon_exit__height);
+    }
+}

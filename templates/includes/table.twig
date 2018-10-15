@@ -1,0 +1,26 @@
+{% set blockClass = 'table' %}
+
+<table class="{{ bem(blockClass, [type ? type : '', sortable ? 'sortable' : '']) }} {{ parentClass ? bem(parentClass, blockClass) }}">
+    <thead class="{{ bem(blockClass, 'thead') }}">
+        {% for row in tableData.thead %}
+            <tr class="{{ bem(blockClass, 'theadRow') }}">
+                {% for cell in row %}
+                    <th class="{{ bem(blockClass, 'theadCell') }}">{{ cell }}</th>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </thead>
+
+    <tbody class="{{ bem(blockClass, 'tbody') }}">
+        {% for key, row in tableData.tbody %}
+            <tr class="{{ bem(blockClass, 'row') }}">
+                {% for cell in row %}
+                    {% if numbered and loop.first %}
+                        <td class="{{ bem(blockClass, 'cell') }}">{{ key + 1}}</td>
+                    {% endif %}
+                    <td class="{{ bem(blockClass, 'cell') }}"><a href="#">{{ cell }}</a></td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

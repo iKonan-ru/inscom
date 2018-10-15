@@ -1,0 +1,102 @@
+.position(@value, @offsets...) when (iskeyword(@value)) {
+    @count: length(@offsets);
+
+    & {
+        position: @value;
+    }
+
+    & when (@count >= 4) {
+        .offset(left, extract(@offsets, 4));
+        .offset(right, extract(@offsets, 2));
+        .offset(top, extract(@offsets, 1));
+        .offset(bottom, extract(@offsets, 3));
+    }
+
+    & when (@count = 3) {
+        @left-right: extract(@offsets, 2);
+        .offset(left, @left-right);
+        .offset(right, @left-right);
+        .offset(top, extract(@offsets, 1));
+        .offset(bottom, extract(@offsets, 3));
+    }
+
+    & when (@count = 2) {
+        @left-right: extract(@offsets, 2);
+        @top-bottom: extract(@offsets, 1);
+        .offset(left, @left-right);
+        .offset(right, @left-right);
+        .offset(top, @top-bottom);
+        .offset(bottom, @top-bottom);
+    }
+
+    & when (@count = 1) {
+        .offset(left, @offsets);
+        .offset(right, @offsets);
+        .offset(top, @offsets);
+        .offset(bottom, @offsets);
+    }
+
+    .offset(@side, @value) when (isnumber(@value)), (@value = auto) {
+            @{side}: @value;
+    }
+}
+
+.absolute(@offsets...) {
+    .position(absolute, @offsets);
+}
+
+.fixed(@offsets...) {
+    .position(fixed, @offsets);
+}
+
+.relative(@offsets...) {
+    .position(relative, @offsets);
+}
+
+.absoluteLeftTop(@left: 0, @top: 0) {
+    .absolute(@top, null, null, @left);
+}
+
+.absoluteVertical() {
+    .absolute(50%, null, null);
+    transform+_: translateY(-50%);
+}
+
+.clearfix() {
+
+    &::after {
+        content: '';
+        display: block;
+        clear: both;
+        visibility: hidden;
+        height: 0;
+    }
+}
+
+.hide-text() {
+    overflow: hidden;
+    text-indent: -10000px;
+    text-align: left !important;
+}
+
+.text-overflow-ellipsis() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.text-overflow-none() {
+    white-space: normal;
+    text-overflow: clip;
+}
+
+.text-overflow-ellipsis-multiline(@numLines) {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: @numLines;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    text-overflow: -o-ellipsis-lastline; // Opera 10.6 - 12.x
+    //text-overflow: ellipsis-lastline; // не используется (и нет в спецификации)
+}

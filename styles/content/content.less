@@ -1,0 +1,16 @@
+@import 'content__vars';
+@import '../topBar/topBar__vars';
+@import '../leftBar/leftBar__vars';
+
+.content {
+    padding-top: @topBar__height;
+    padding-left: @leftBar__width_min;
+    box-sizing: border-box;
+    min-height: 100%;
+
+    &__title {
+        text-transform: uppercase;
+        color: @_c__text;
+        ._t__use(@_t__12_16_bold_normal);
+    }
+}

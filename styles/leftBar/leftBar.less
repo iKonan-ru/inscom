@@ -1,0 +1,21 @@
+@import 'leftBar__vars';
+@import '../topBar/topBar__vars';
+
+.leftBar {
+    .fixed(@topBar__height, null, 0, 0);
+    background-color: @_c__brand_primary;
+    z-index: @_z__leftBar;
+    box-shadow: 0 2px 4px rgba(174, 174, 174, 0.29);
+    transition: max-width @leftBar__transition__duration @leftBar__transition__delay;
+
+    &:not(:hover) {
+        max-width: @leftBar__width_min;
+        overflow: hidden;
+    }
+
+    &:hover {
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-width: @leftBar__width_max;
+    }
+}

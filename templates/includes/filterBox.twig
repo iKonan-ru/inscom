@@ -1,0 +1,25 @@
+{% set blockClass = 'filterBox' %}
+
+<div class="{{ blockClass }} {{ parentClass ? bem(parentClass, blockClass) }}">
+    <div class="{{ bem(blockClass, 'leftSide') }}">
+        {% block leftSide %}{% endblock %}
+    </div>
+
+    <div class="{{ bem(blockClass, 'rightSide') }}">
+        {% block rightSide %}{% endblock %}
+    </div>
+
+    {% set _filtersBlock = block('filtersBlock') %}
+    {% if _filtersBlock is not empty %}
+        <div class="{{ bem(blockClass, 'filters') }}">
+            <span class="{{ bem(blockClass, 'filtersText') }}">Фильтры</span>
+            <span class="{{ bem(blockClass, 'filtersCount') }}">2</span>
+        </div>
+
+        <div class="{{ bem(bem(blockClass, 'filtersBlock'), ['collapsed']) }}">
+            <div class="{{ bem(blockClass, 'filtersInner') }}">
+                {{ _filtersBlock|raw }}
+            </div>
+        </div>
+    {% endif %}
+</div>

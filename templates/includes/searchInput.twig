@@ -1,0 +1,6 @@
+{% set blockClass = 'searchInput' %}
+
+<div class="{{ parentClass ? bem(parentClass, blockClass) }} {{ bem(blockClass, [shadow ? 'shadow' : 'flat']) }}">
+    <input class="{{ bem(blockClass, 'input') }}" placeholder="{{ placeholder }}" type="text">
+    <button class="{{ bem(blockClass, 'button') }}"></button>
+</div>

@@ -1,0 +1,45 @@
+@import 'tabs__vars';
+@import '../filterBox/filterBox__vars';
+
+.tabs {
+    @root: ~'.tabs';
+
+    &__list {
+        font-size: 0;
+        white-space: nowrap;
+    }
+
+    &__item {
+        @padding_y: ((@filterBox__height - 20px) / 2);
+
+        .relative;
+        display: inline-block;
+        vertical-align: top;
+        padding: floor(@padding_y) 20px ceil(@padding_y);
+        cursor: pointer;
+
+        &:not(&_active) @{root}__caption {
+            color: @_c__brand_primary;
+        }
+
+        &_active {
+
+            &::after {
+                .absolute(null, 0, 0);
+                content: '';
+                height: 2px;
+                background-color: @_c__brand_primary;
+            }
+        }
+    }
+
+    &__caption {
+        ._t__use(@_t__14_20_bold_normal);
+    }
+
+    &__counter {
+        margin-left: 10px;
+        ._t__use(@_t__14_20_regular_normal);
+        color: @_c__gray_1;
+    }
+}

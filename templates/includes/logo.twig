@@ -1,0 +1,5 @@
+{% set blockClass = 'logo' %}
+
+<a href="/" class="{{ blockClass }} {{ parentClass ? bem(parentClass, blockClass) }}">
+    <img class="{{ bem(blockClass, 'image') }}" src="../../assets/images/logo.svg" />
+</a>

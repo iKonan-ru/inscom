@@ -1,0 +1,41 @@
+@import '../__vars';
+
+@_f__normal: Arial, Helvetica, FreeSans, sans-serif;
+
+@_f__icons: Icons;
+
+@_f__commonName: Roboto;
+@_f__common: @_f__commonName, @_f__icons, @_f__normal;
+
+@_f__weight_thin: 100;
+@_f__weight_light: 300;
+@_f__weight_regular: 400;
+@_f__weight_medium: 500;
+@_f__weight_bold: 700;
+@_f__weight_black: 900;
+
+@_f__style_normal: normal;
+@_f__style_italic: italic;
+
+
+._f__use(@fontFamily, @baseFilename: @fontFamily, @fontWeight: @_f__weight_regular, @fontStyle: @_f__style_normal) {
+    @dir: 'fonts/@{fontFamily}';
+
+    @font-face {
+        font-family: @fontFamily;
+        font-weight: @fontWeight;
+        font-style: @fontStyle;
+        src: url(~'@{dir}/@{baseFilename}.eot') format('eot');
+        src: url(~'@{dir}/@{baseFilename}.eot#iefix') format('embedded-opentype'),
+             url(~'@{dir}/@{baseFilename}.woff') format('woff'),
+             url(~'@{dir}/@{baseFilename}.woff2') format('woff2'),
+             url(~'@{dir}/@{baseFilename}.ttf') format('truetype'),
+             url(~'@{dir}/@{baseFilename}.svg#@{baseFilename}') format('svg'),
+             local('☺');
+    }
+}
+
+._f__smoothing() {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

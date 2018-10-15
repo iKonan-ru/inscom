@@ -1,0 +1,69 @@
+{% extends 'includes/layout.twig' %}
+
+{% set pageTitle = 'Справочник классификаторов оборудования' %}
+{% set activeMainMenuItem = 'vocabulary' %}
+
+{% block content %}
+    {% embed 'includes/filterBox.twig' %}
+        {% set blockClass = 'filterBox' %}
+        {% block leftSide %}
+            <h1 class="{{ bem(blockClass, 'title') }}">{{ pageTitle }}</h1>
+        {% endblock %}
+        {% block rightSide %}
+            {% include 'includes/searchInput.twig' with {parentClass: blockClass, placeholder: 'Глобальный поиск'} %}
+            {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Добавить оборудование', icon: 'add', link: '#'} %}
+        {% endblock %}
+        {% block filtersBlock %}
+            <div class="{{ bem(blockClass, 'leftSide') }}">
+                {% include 'includes/searchInput.twig' with {parentClass: blockClass, placeholder: 'Поиск оборудования'} %}
+            </div>
+            <div class="{{ bem(blockClass, 'rightSide') }}">
+                {% include 'includes/button.twig' with {parentClass: blockClass, text: 'Фильтровать', style: 'dark'} %}
+                {% include 'includes/button.twig' with {parentClass: blockClass, text: 'Сбросить', style: 'light'} %}
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+    {% include 'includes/table.twig' with {
+        sortable: true,
+        numbered: true,
+        type: 'vocabulary',
+        tableData: {
+            thead: [
+                [
+                    '№',
+                    'Наименование',
+                    'Бренды',
+                    'Код',
+                    'Код'
+                ]
+            ],
+            tbody: [
+                [
+                    'Spreadsheet',
+                    'Ready',
+                    'Apple',
+                    ''
+                ],
+                [
+                    'Spreadsheet',
+                    'Apple Works',
+                    'Apple',
+                    ''
+                ],
+                [
+                    'Spreadsheet',
+                    'Apple Works',
+                    'Apple',
+                    ''
+                ],
+                [
+                    'Spreadsheet',
+                    'Apple Works',
+                    'Apple',
+                    ''
+                ]
+            ]
+        }
+    } %}
+{% endblock %}

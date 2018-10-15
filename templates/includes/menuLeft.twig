@@ -1,0 +1,29 @@
+{% set blockClass = 'menuLeft' %}
+
+{% set mainMenuData = [
+    {title: 'Работы', type: 'projects'},
+    {title: 'Группы работ', type: 'projectsGroups'},
+    {title: 'Склады', type: 'stock'},
+    {title: 'Каталоги оборудования', type: 'equipment'},
+    {title: 'План поставок', type: 'delivery'},
+    {title: 'Центральный заказ', type: 'order'},
+    {title: 'Остатки на дистрибьютерах', type: 'balance'},
+    {title: 'План работ', type: 'workPlan'},
+    {title: 'Справочники', type: 'vocabulary'},
+    {title: 'Аналитика', type: 'analytics'},
+] %}
+
+{% set activeModifier = 'active' %}
+
+<div class="{{ blockClass }} {{ parentClass ? bem(parentClass, blockClass) }}">
+    <ul class="{{ bem(blockClass, 'list') }}">
+        {% for item in mainMenuData %}
+            <li class="{{ bem(bem(blockClass, 'item'), [
+                item.type | trim,
+                activeMainMenuItem == item.type ? activeModifier | trim : ''
+            ]) }}">
+                <a href="#" class="{{ bem(blockClass, 'link') }}">{{ item.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

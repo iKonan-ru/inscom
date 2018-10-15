@@ -1,0 +1,4 @@
+@import '../__vars';
+
+<% _.each(glyphs, function(glyph) { %>@_i__<%= glyph.fileName %>: "\<%= glyph.codePoint %>";
+<% }); %>

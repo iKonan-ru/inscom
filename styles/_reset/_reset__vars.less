@@ -1,0 +1,34 @@
+@import '../__vars';
+@import '_reset__mixins';
+
+@_r__selectors_root: html, body;
+@_r__selectors_base:
+    header, footer, nav, section, article, aside, figure, figcaption, mark,
+    div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, ul, ol, li, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd,
+    q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd,
+    fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, br;
+
+@_r__selectors_bold: h1, h2, h3, h4, h5, h6;
+@_r__selectors_italic: cite, em, i;
+@_r__selectors_bullets: ol, ul, li;
+@_r__selectors_quotes: blockquote, q;
+
+@_r__selectors_table: table;
+@_r__selectors_link: a;
+
+@_r__selectors_button_base: button, ~'input[type=submit]', ~'input[type=reset]', ~'input[type=button]';
+
+@_r__selectors_input_base:
+    ~'input[type=text]',
+    ~'input[type=password]',
+    ~'input[type=email]',
+    ~'input[type=tel]',
+    ~'input[type=search]';
+@_r__selectors_input_search: ~'input[type=search]';
+@_r__selectors_input_placeholder: input, textarea;
+
+@_r__selectors_hidden: meta;
+@_r__selectors_focus: ~':focus';
+@_r__selectors_deviceTap: body;
+@_r__selectors_deviceTextAdjust: html;

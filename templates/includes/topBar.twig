@@ -1,0 +1,15 @@
+{% set blockClass = 'topBar' %}
+
+<div class="{{ blockClass }} {{ parentClass ? bem(parentClass, blockClass) }}">
+    {% set parentClass = blockClass %}
+
+    <div class="{{ bem(blockClass, 'leftSide') }}">
+        {% include 'logo.twig' %}
+        {% include 'searchInput.twig' with {placeholder: 'Глобальный поиск'} %}
+    </div>
+
+    <div class="{{ bem(blockClass, 'rightSide') }}">
+        {% include 'userInfo.twig' %}
+        <button class="{{ bem(blockClass, 'exit') }}"></button>
+    </div>
+</div>

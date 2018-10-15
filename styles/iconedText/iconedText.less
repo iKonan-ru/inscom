@@ -1,0 +1,19 @@
+@import 'iconedText__vars';
+
+.iconedText {
+    display: inline-block;
+    color: @_c__brand_primary;
+    ._t__use(@_t__14_20_bold_normal);
+
+    each(@iconedText__icons, {
+        @iconName: ~'_i__@{value}';
+
+        &_@{value} {
+            ._i__use(@@iconName, @iconedText__icon__size, 20px);
+        }
+    });
+
+    &::before {
+        margin-right: 8px;
+    }
+}

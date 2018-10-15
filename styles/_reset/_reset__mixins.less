@@ -1,0 +1,272 @@
+@import '../__vars';
+
+._reset__root() {
+    margin: 0;
+    padding: 0;
+}
+
+._reset__base() {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    line-height: 1.2;
+    vertical-align: baseline;
+    background: transparent;
+    text-decoration: none;
+}
+
+._reset__bold() {
+    //font-weight: @_f__weight_regular;
+}
+
+._reset__italic() {
+    font-style: normal;
+}
+
+._reset__bullets() {
+    list-style: none;
+}
+
+._reset__quotes() {
+    quotes: none;
+
+    &::before,
+    &::after {
+        content: '';
+        content: none;
+    }
+}
+
+._reset__table() {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+._reset__link() {
+    color: inherit;
+
+    img {
+        border: none;
+    }
+}
+
+._reset__button_base() {
+    -webkit-appearance: none;
+
+    &::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+}
+
+._reset__button_dangerous() {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    overflow: visible;
+    text-align: center;
+    white-space: nowrap;
+}
+
+._reset__input_base() {
+    -webkit-appearance: none;
+}
+
+._reset__input_search() {
+
+    &::-webkit-search-decoration {
+        -webkit-appearance: none;
+    }
+
+    &::-webkit-search-cancel-button {
+        display: none;
+    }
+}
+
+._reset__input_clear() {
+
+    &::-ms-clear {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+._reset__input_placeholder() {
+    opacity: 1;
+    color: inherit;
+}
+
+._reset__hidden() {
+    display: none !important;
+}
+
+._reset__focus() {
+    outline: 0;
+}
+
+._reset__deviceTap() {
+    -webkit-tap-highlight-color: transparent;
+}
+
+._reset__deviceTextAdjust() {
+    -webkit-text-size-adjust: 100%;
+}
+
+._reset__all() {
+    ._reset__some(
+        @_r__selectors_root,
+        @_r__selectors_base,
+        @_r__selectors_bold,
+        @_r__selectors_italic,
+        @_r__selectors_bullets,
+        @_r__selectors_quotes,
+        @_r__selectors_table,
+        @_r__selectors_link,
+        @_r__selectors_button_base,
+        @_r__selectors_input_base,
+        @_r__selectors_input_search,
+        @_r__selectors_input_placeholder,
+        @_r__selectors_hidden,
+        @_r__selectors_focus,
+        @_r__selectors_deviceTap,
+        @_r__selectors_deviceTextAdjust
+    );
+}
+
+._reset__some(
+    @selectors_root: null,
+    @selectors_base: null,
+    @selectors_bold: null,
+    @selectors_italic: null,
+    @selectors_bullets: null,
+    @selectors_quotes: null,
+    @selectors_table: null,
+    @selectors_link: null,
+    @selectors_button_base: null,
+    @selectors_input_base: null,
+    @selectors_input_search: null,
+    @selectors_input_placeholder: null,
+    @selectors_hidden: null,
+    @selectors_focus: null,
+    @selectors_deviceTap: null,
+    @selectors_deviceTextAdjust: null
+) {
+
+    & when not (@selectors_root = null) {
+
+        @{selectors_root} {
+            ._reset__root();
+        }
+    }
+
+    & when not (@selectors_base = null) {
+
+        @{selectors_base} {
+            ._reset__base();
+        }
+    }
+
+    & when not (@selectors_bold = null) {
+
+        @{selectors_bold} {
+            ._reset__bold();
+        }
+    }
+
+    & when not (@selectors_italic = null) {
+
+        @{selectors_italic} {
+            ._reset__italic();
+        }
+    }
+
+    & when not (@selectors_bullets = null) {
+
+        @{selectors_bullets} {
+            ._reset__bullets();
+        }
+    }
+
+    & when not (@selectors_quotes = null) {
+
+        @{selectors_quotes} {
+            ._reset__quotes();
+        }
+    }
+
+    & when not (@selectors_table = null) {
+
+        @{selectors_table} {
+            ._reset__table();
+        }
+    }
+
+    & when not (@selectors_link = null) {
+
+        @{selectors_link} {
+            ._reset__link();
+        }
+    }
+
+    & when not (@selectors_button_base = null) {
+
+        @{selectors_button_base} {
+            ._reset__button_base();
+            ._reset__button_dangerous()
+        }
+    }
+
+    & when not (@selectors_input_base = null) {
+
+        @{selectors_input_base} {
+            ._reset__input_base();
+        }
+    }
+
+    & when not (@selectors_input_search = null) {
+
+        @{selectors_input_search} {
+            ._reset__input_search();
+        }
+    }
+
+    & when not (@selectors_input_placeholder = null) {
+
+        @{selectors_input_placeholder} {
+            ._reset__input_placeholder();
+        }
+    }
+
+    & when not (@selectors_hidden = null) {
+
+        @{selectors_hidden} {
+            ._reset__hidden();
+        }
+    }
+
+    & when not (@selectors_focus = null) {
+
+        @{selectors_focus} {
+            ._reset__focus();
+        }
+    }
+
+    & when not (@selectors_deviceTap = null) {
+
+        @{selectors_deviceTap} {
+            ._reset__deviceTap();
+        }
+    }
+
+    & when not (@selectors_deviceTextAdjust = null) {
+
+        @{selectors_deviceTextAdjust} {
+            ._reset__deviceTextAdjust();
+        }
+    }
+}

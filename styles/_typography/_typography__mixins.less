@@ -1,0 +1,22 @@
+._t__use(@typo) {
+    ._t__font-size(@typo);
+    ._t__line-height(@typo);
+    ._t__font-weight(@typo);
+    ._t__font-style(@typo);
+}
+
+._t__font-size(@typo) {
+    font-size: extract(@typo, 1);
+}
+
+._t__line-height(@typo) {
+    line-height: extract(@typo, 2);
+}
+
+._t__font-weight(@typo) {
+    font-weight: extract(@typo, 3);
+}
+
+._t__font-style(@typo) {
+    font-style: extract(@typo, 4);
+}

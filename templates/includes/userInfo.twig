@@ -1,0 +1,9 @@
+{% set blockClass = 'userInfo' %}
+
+<div class="{{ blockClass }} {{ parentClass ? bem(parentClass, blockClass) }}">
+    <a href="#" class="{{ bem(blockClass, 'link') }}">
+        <span class="{{ bem(blockClass, 'name') }}">Иван Иванов</span>
+        <span class="{{ bem(blockClass, 'notify') }}">3</span>
+    </a>
+    <div class="{{ bem(blockClass, 'manager') }}">Ваш менеджер: Всеволод Петров +7 925 123-34-56</div>
+</div>

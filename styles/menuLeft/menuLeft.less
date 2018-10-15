@@ -1,0 +1,55 @@
+@import 'menuLeft__vars';
+@import '../topBar/topBar__vars';
+
+.menuLeft {
+    @root: ~'.menuLeft';
+    @item: ~'@{root}__item';
+
+    &__item {
+        overflow: hidden;
+        transition: color @_d__globalMove, background-color @_d__globalMove;
+
+        &:not(@{item}_active):not(:hover) {
+            color: @_c__white;
+        }
+
+        &_active,
+        &:hover {
+            background-color: @_c__white;
+            color: @_c__brand_primary;
+        }
+    }
+
+    &__link {
+        @lineHeight: 20px;
+        @padding: (@menuLeft__iconBlock__size - @lineHeight) / 2;
+
+        display: block;
+        white-space: nowrap;
+        padding-top: floor(@padding);
+        padding-bottom: ceil(@padding);
+        padding-right: 35px;
+
+        @{item}:not(@{item}_active) & {
+            ._t__use(@_t__14_20_regular_normal);
+        }
+
+        @{item}_active & {
+            ._t__use(@_t__14_20_bold_normal);
+        }
+
+        each(@menuLeft__icons, {
+            @iconName: ~'_i__@{value}';
+
+            @{item}_@{value} & {
+                ._i__use(@@iconName, @menuLeft__icon__size, @lineHeight);
+            }
+        });
+
+        &::before {
+            display: inline-block;
+            width: @menuLeft__iconBlock__size;
+            text-align: center;
+        }
+    }
+}

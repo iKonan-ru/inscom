@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>analytics</title>
+  <g>
+    <path d="M42.56,0H0V512H512V469.44H42.56Z"/>
+    <path d="M341.12,0V42.56H439l-97.92,97.92V256H225.92L87,394.56,117.12,425l126.4-126.4H384V158.08L469.12,73v97.6H512V0Z"/>
+  </g>
+</svg>

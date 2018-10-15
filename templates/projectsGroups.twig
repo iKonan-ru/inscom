@@ -1,0 +1,72 @@
+{% extends 'includes/layout.twig' %}
+
+{% set pageTitle = 'Группы работ' %}
+{% set activeMainMenuItem = 'projectsGroups' %}
+
+{% block content %}
+    {% embed 'includes/filterBox.twig' %}
+        {% set blockClass = 'filterBox' %}
+        {% block leftSide %}
+            {% include 'includes/tabs.twig' with {
+                tabs: [
+                    {caption: 'Все группы работ', active: true},
+                    {caption: 'Требуют проверки', counter: '3'},
+                    {caption: 'В процессе', counter: '20'},
+                    {caption: 'Завершены'},
+                    {caption: 'В архиве'}
+                ]
+            } %}
+        {% endblock %}
+    {% endembed %}
+    {% embed 'includes/filterBox.twig' %}
+        {% set blockClass = 'filterBox' %}
+        {% block leftSide %}
+            {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Загрузить PUSH-заказа', icon: 'add', link: '#'} %}
+        {% endblock %}
+        {% block rightSide %}
+            {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Выгрузить имиджи', icon: 'add', link: '#'} %}
+            {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Выгрузить все работы', icon: 'add', link: '#'} %}
+        {% endblock %}
+    {% endembed %}
+
+    {% include 'includes/table.twig' with {
+        sortable: true,
+        type: 'projects',
+        tableData: {
+            thead: [
+                [
+                    '№',
+                    'Наименование',
+                    'Бренды',
+                    'Код',
+                    'Код'
+                ]
+            ],
+            tbody: [
+                [
+                    'Spreadsheet',
+                    'Ready',
+                    'Apple'
+                ],
+                [
+                    'Spreadsheet',
+                    'Apple Works',
+                    'Apple',
+                    ''
+                ],
+                [
+                    'Spreadsheet',
+                    'Apple Works',
+                    'Apple',
+                    ''
+                ],
+                [
+                    'Spreadsheet',
+                    'Apple Works',
+                    'Apple',
+                    ''
+                ]
+            ]
+        }
+    } %}
+{% endblock %}

@@ -1,0 +1,135 @@
+@import 'filterBox__vars';
+
+.filterBox {
+    .relative();
+    display: table;
+    width: 100%;
+    height: @filterBox__height;
+    background-color: @_c__brand_secondary;
+
+    & + & {
+        border-top: 1px solid @_c__table__separator;
+    }
+
+    &__leftSide,
+    &__rightSide {
+        padding-left: 10px;
+        padding-right: 15px;
+        font-size: 0;
+
+        & > * {
+            display: inline-block;
+        }
+    }
+
+    &__leftSide {
+        margin-right: 30px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    &__rightSide {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: right;
+    }
+
+    &__title {
+        text-transform: uppercase;
+        color: @_c__text;
+        ._t__use(@_t__14_20_bold_normal);
+    }
+
+    &__searchInput + &__iconedText {
+        margin-left: 30px;
+    }
+
+    &__filters {
+        .relative();
+        display: table-cell;
+        vertical-align: middle;
+        width: 0.1%;
+        padding-left: 20px;
+        padding-right: 20px;
+        white-space: nowrap;
+        cursor: pointer;
+        transition: background-color @_d__globalMove;
+        z-index: 1;
+
+        &Block {
+            .absolute(null, 0, 5px);
+            display: none;
+            overflow: hidden;
+            padding-top: 15px;
+            padding-bottom: $padding-top;
+            box-shadow: 0 3px 4px rgba(174, 174, 174, 0.29);
+            border-top: 2px solid rgba(174, 174, 174, 0.29);
+            transform: translateY(100%);
+            transition: opacity @_d__globalMove;
+            background-color: @_c__white;
+
+            &_collapsed {
+                opacity: 0;
+            }
+        }
+
+        &Inner {
+            display: table;
+            width: 100%;
+        }
+
+        &Text {
+            color: @_c__brand_primary;
+            ._t__use(@_t__14_20_bold_normal);
+        }
+
+        &Count {
+            display: inline-block;
+            vertical-align: top;
+            background-color: @_c__brand_primary;
+            border-radius: 50%;
+            width: 20px;
+            height: $width;
+            font-size: 12px;
+            line-height: $height;
+            color: @_c__white;
+            margin-left: 5px;
+            text-align: center;
+        }
+
+        &:hover {
+            background-color: @_c__white;
+        }
+
+        ._i__use(@_i__arrow_down, 12px, 20px, after);
+
+        &::after {
+            display: inline-block;
+            color: @_c__brand_primary;
+            margin-left: 5px;
+            transition: transform @_d__globalMove;
+        }
+
+        &_active {
+            background-color: @_c__white;
+
+            &::after {
+                transform: rotate(180deg) translateZ(0);
+            }
+        }
+    }
+
+    &__button {
+
+        & + & {
+            margin-left: 10px;
+        }
+    }
+
+    &__iconedText {
+
+        & + & {
+            margin-left: 40px;
+        }
+    }
+}

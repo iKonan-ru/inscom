@@ -1,0 +1,29 @@
+@import 'button__vars';
+
+.button {
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 8px 15px;
+    user-select: none;
+    ._t__use(@_t__14_20_bold_normal);
+    transition: color @_d__globalMove, background-color @_d__globalMove;
+
+    &_light {
+        background-color: @_c__brand_secondary;
+        color: @_c__brand_primary;
+
+        &:hover {
+            background-color: darken(@_c__brand_secondary, 7%);
+        }
+    }
+
+    &_dark {
+        background-color: @_c__brand_primary;
+        color: @_c__brand_secondary;
+
+        &:hover {
+            background-color: lighten(@_c__brand_primary, 7%);
+        }
+    }
+}

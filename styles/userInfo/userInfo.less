@@ -1,0 +1,34 @@
+@import 'userInfo__vars';
+
+.userInfo {
+    text-align: left;
+
+    &__link {
+        .relative();
+        display: inline-block;
+    }
+
+    &__name {
+        ._t__use(@_t__12_16_regular_normal);
+        text-decoration: underline;
+        padding-right: 25px;
+    }
+
+    &__notify {
+        .absolute(-5px, 0, null, null);
+        width: 18px;
+        height: $width;
+        background-color: @_c__brand_yellow;
+        text-align: center;
+        font-size: 10px;
+        line-height: $height;
+        font-weight: @_f__weight_bold;
+        border-radius: 50%;
+    }
+
+    &__manager {
+        ._t__use(@_t__12_16_regular_normal);
+        .text-overflow-ellipsis();
+        margin-top: 2px;
+    }
+}
