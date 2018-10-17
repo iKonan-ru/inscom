@@ -47,7 +47,7 @@ gulp.task('assets-url', () => {
         .pipe(replace('../../assets/', ''))
         .pipe(gulp.dest('./build/assets'));
     gulp.src(['./build/*.html'])
-        .pipe(replace('../../assets/', ''))
+        .pipe(replace('../../assets/', 'assets/'))
         .pipe(gulp.dest('./build/'));
 });
 
