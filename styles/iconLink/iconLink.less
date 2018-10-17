@@ -1,5 +1,18 @@
 @import 'iconLink__vars';
 
 .iconLink {
-    //
+    display: inline-block;
+    text-decoration: none !important;
+
+    each(@iconLink__icons, {
+        @iconName: ~'_i__@{value}';
+
+        &_@{value} {
+            ._i__use(@@iconName, 18px, 20px);
+
+            &::before {
+                color: @value;
+            }
+        }
+    });
 }

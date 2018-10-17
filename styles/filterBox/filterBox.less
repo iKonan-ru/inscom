@@ -12,6 +12,7 @@
     }
 
     &__leftSide,
+    &__center,
     &__rightSide {
         padding-left: 10px;
         padding-right: 15px;
@@ -23,7 +24,12 @@
     }
 
     &__leftSide {
+        display: table-cell;
+        vertical-align: middle;
         margin-right: 30px;
+    }
+
+    &__center {
         display: table-cell;
         vertical-align: middle;
     }

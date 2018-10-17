@@ -10,13 +10,8 @@
     }
 
     &__item {
-        @padding_y: ((@filterBox__height - 20px) / 2);
-
         .relative;
         display: inline-block;
-        vertical-align: top;
-        padding: floor(@padding_y) 20px ceil(@padding_y);
-        cursor: pointer;
 
         &:not(&_active) @{root}__caption {
             color: @_c__brand_primary;
@@ -31,6 +26,15 @@
                 background-color: @_c__brand_primary;
             }
         }
+    }
+
+    &__link {
+        @padding_y: ((@filterBox__height - 20px) / 2);
+
+        display: inline-block;
+        vertical-align: top;
+        padding: floor(@padding_y) 20px ceil(@padding_y);
+        cursor: pointer;
     }
 
     &__caption {

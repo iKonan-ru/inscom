@@ -1,6 +1,6 @@
 {% extends 'includes/layout.twig' %}
 
-{% set pageTitle = 'Группы работ' %}
+{% set pageTitle = 'Остатки на дистрибьютерах' %}
 {% set activeMainMenuItem = 'balance' %}
 
 {% block content %}
@@ -9,9 +9,9 @@
         {% block leftSide %}
             {% include 'includes/tabs.twig' with {
                 tabs: [
-                    {caption: 'Товары', active: true},
-                    {caption: 'Дистрибьюторы'},
-                    {caption: 'Регионы'}
+                    {caption: 'Товары', link: 'balances_goods.html', active: true},
+                    {caption: 'Дистрибьюторы', link: 'balances_dist.html'},
+                    {caption: 'Регионы', link: 'balances_regions.html'}
                 ]
             } %}
         {% endblock %}
@@ -30,7 +30,7 @@
     {% endembed %}
 
     {% set tableData = {
-        types: ['balance', 'bordered'],
+        types: ['balance_goods', 'bordered', 'narrow', 'striped'],
         head: [
             [
                 {id: 'name', text: 'Наименование', rowspan: 2},
@@ -67,7 +67,7 @@
                     {
                         type: 'dropdown',
                         text: 'Все города',
-                        expanded: 'right small',
+                        arrow: 'arrow_right arrow_small',
                         innerList: ['<a href="#">Смоленск</a>', '<a href="#">Архангельск</a>']
                     },
                     {text: '200', innerList: ['150', '50']},

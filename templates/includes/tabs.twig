@@ -4,8 +4,10 @@
     <ul class="{{ bem(blockClass, 'list') }}">
         {% for item in tabs %}
             <li class="{{ bem(bem(blockClass, 'item'), [item.active ? 'active' : '']) }}">
-                <span class="{{ bem(blockClass, 'caption') }}">{{ item.caption }}</span>
-                {% if item.counter %}<span class="{{ bem(blockClass, 'counter') }}">{{ item.counter }}</span>{% endif %}
+                <a href="{{ item.link|default('#') }}" class="{{ bem(blockClass, 'link') }}">
+                    <span class="{{ bem(blockClass, 'caption') }}">{{ item.caption }}</span>
+                    {% if item.counter %}<span class="{{ bem(blockClass, 'counter') }}">{{ item.counter }}</span>{% endif %}
+                </a>
             </li>
         {% endfor %}
     </ul>

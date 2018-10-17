@@ -5,6 +5,10 @@
         {% block leftSide %}{% endblock %}
     </div>
 
+    <div class="{{ bem(blockClass, 'center') }}">
+        {% block center %}{% endblock %}
+    </div>
+
     <div class="{{ bem(blockClass, 'rightSide') }}">
         {% block rightSide %}{% endblock %}
     </div>

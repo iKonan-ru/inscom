@@ -1,0 +1,123 @@
+{% extends 'includes/layout.twig' %}
+
+{% set pageTitle = 'Остатки на дистрибьютерах' %}
+{% set activeMainMenuItem = 'balance' %}
+
+{% block content %}
+    {% embed 'includes/filterBox.twig' %}
+        {% set blockClass = 'filterBox' %}
+        {% block leftSide %}
+            {% include 'includes/tabs.twig' with {
+                tabs: [
+                    {caption: 'Товары', link: 'balances_goods.html'},
+                    {caption: 'Дистрибьюторы', link: 'balances_dist.html', active: true},
+                    {caption: 'Регионы', link: 'balances_regions.html'}
+                ]
+            } %}
+        {% endblock %}
+        {% block rightSide %}
+            {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Выгрузить сток', icon: 'xls', link: '#'} %}
+            {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Выгрузить изображения', icon: 'images', link: '#'} %}
+        {% endblock %}
+        {% block filtersBlock %}
+            <div class="{{ bem(blockClass, 'leftSide') }}">
+                {% include 'includes/searchInput.twig' with {parentClass: blockClass, placeholder: 'Поиск оборудования'} %}
+            </div>
+            <div class="{{ bem(blockClass, 'rightSide') }}">
+                {% include 'includes/button.twig' with {parentClass: blockClass, text: 'Фильтровать', style: 'dark'} %}
+                {% include 'includes/button.twig' with {parentClass: blockClass, text: 'Сбросить', style: 'light'} %}
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+    {% set tableData = {
+        types: ['balance_region', 'bordered', 'wide'],
+        head: [
+            [
+                {id: 'name', text: 'Наименование организации, город', rowspan: 2},
+                {id: 'balance_norm', text: 'Остаток нормативный'},
+                {id: 'balance_fact', text: 'Остаток фактический', colspan: 3},
+                {id: 'waiting', text: 'Ожидание', colspan: 3}
+            ],
+            [
+                {id: 'pallet', text: 'паллет'},
+                {id: 'pallet', text: 'паллет'},
+                {id: 'pieces', text: 'штук'},
+                {id: 'money', text: 'рублей'},
+                {id: 'pallet', text: 'паллет'},
+                {id: 'pieces', text: 'штук'},
+                {id: 'money', text: 'рублей'}
+            ]
+        ],
+        body: [
+            {
+                expandable: true,
+                cells: [
+                    {
+                        type: 'dropdown',
+                        text: 'ООО "Алиди Предприятие"',
+                        arrow: 'arrow_left arrow_large',
+                        innerList: [
+                            '<a href="#">Тверь</a>',
+                            '<a href="#">Саратов</a>',
+                            '<a href="#">Москва</a>'
+                        ]
+                    },
+                    {text: '200', innerList: ['100', '50', '50']},
+                    {text: '3000', innerList: ['1000', '1000', '1000']},
+                    {text: '5000', innerList: ['1000', '1000', '1000']},
+                    {text: '50', innerList: ['50', '50', '50']},
+                    {text: '00', innerList: ['', '', '']},
+                    {text: '1', innerList: ['1', '1', '1']},
+                    {text: '2000', innerList: ['2000', '2000', '2000']}
+                ]
+            },
+            {
+                expandable: true,
+                cells: [
+                    {
+                        type: 'dropdown',
+                        text: 'ООО "Независимость"',
+                        arrow: 'arrow_left arrow_large',
+                        innerList: [
+                            '<a href="#">Тверь</a>',
+                            '<a href="#">Саратов</a>',
+                            '<a href="#">Москва</a>'
+                        ]
+                    },
+                    {text: '200', innerList: ['100', '50', '50']},
+                    {text: '3000', innerList: ['1000', '1000', '1000']},
+                    {text: '5000', innerList: ['1000', '1000', '1000']},
+                    {text: '50', innerList: ['50', '50', '50']},
+                    {text: '00', innerList: ['', '', '']},
+                    {text: '1', innerList: ['1', '1', '1']},
+                    {text: '2000', innerList: ['2000', '2000', '2000']}
+                ]
+            },
+            {
+                expandable: true,
+                cells: [
+                    {
+                        type: 'dropdown',
+                        text: 'ООО "НИК-К"',
+                        arrow: 'arrow_left arrow_large',
+                        innerList: [
+                            '<a href="#">Тверь</a>',
+                            '<a href="#">Саратов</a>',
+                            '<a href="#">Москва</a>'
+                        ]
+                    },
+                    {text: '200', innerList: ['100', '50', '50']},
+                    {text: '3000', innerList: ['1000', '1000', '1000']},
+                    {text: '5000', innerList: ['1000', '1000', '1000']},
+                    {text: '50', innerList: ['50', '50', '50']},
+                    {text: '00', innerList: ['', '', '']},
+                    {text: '1', innerList: ['1', '1', '1']},
+                    {text: '2000', innerList: ['2000', '2000', '2000']}
+                ]
+            }
+        ]
+    } %}
+
+    {% include 'includes/table.twig' %}
+{% endblock %}

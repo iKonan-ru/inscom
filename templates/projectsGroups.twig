@@ -9,7 +9,7 @@
         {% block leftSide %}
             {% include 'includes/tabs.twig' with {
                 tabs: [
-                    {caption: 'Все группы работ', active: true},
+                    {caption: 'Все группы работ', link: 'projectsGroups.html', active: true},
                     {caption: 'Требуют проверки', counter: '3'},
                     {caption: 'В процессе', counter: '20'},
                     {caption: 'Завершены'},
@@ -30,7 +30,7 @@
     {% endembed %}
 
     {% set tableData = {
-        types: ['projects'],
+        types: ['projects', 'solid', 'wide'],
         head: [
             [
                 {id: 'index', text: '№', sortable: 'up'},

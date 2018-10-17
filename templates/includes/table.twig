@@ -30,7 +30,7 @@
                                     </a>
                                 {% endif %}
                             {% elseif cell.type == 'dropdown' %}
-                                <a class="{{ cell.textStyle }} dropdown" href="#">{{ cell.text }}</a>
+                                <a class="{{ cell.textStyle }} dropdown {{ cell.arrow }}" href="#">{{ cell.text }}</a>
                             {% elseif cell.type == 'status' %}
                                 {% include 'iconedStatus.twig' with {
                                     status: cell.status, text: not cell.text ? (
