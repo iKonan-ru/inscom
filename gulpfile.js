@@ -43,12 +43,12 @@ gulp.task('assets', () => {
 
 // Исправляем пути на ассеты в стилях и шаблонах
 gulp.task('assets-url', () => {
-    gulp.src(['main.css'])
+    gulp.src(['./build/assets/main.css'])
         .pipe(replace('../../assets/', ''))
-        .pipe(gulp.dest('build/assets'));
-    gulp.src(['*.html'])
+        .pipe(gulp.dest('./build/assets'));
+    gulp.src(['./build/*.html'])
         .pipe(replace('../../assets/', ''))
-        .pipe(gulp.dest('assets/'));
+        .pipe(gulp.dest('./build/'));
 });
 
 // Сборка стилей
@@ -131,7 +131,7 @@ gulp.task('clean', () => {
 gulp.task('watch', () => {
     gulp.watch(['./styles/**/*'], () => {gulpSequence('styles', 'assets-url', 'server:reload')()});
     gulp.watch(['./assets/**/*'], () => {gulpSequence('assets', 'server:reload')()});
-    gulp.watch(['./templates/**/*'], () => {gulpSequence('templates', 'assets-url', 'html', 'server:reload')()});
+    gulp.watch(['./templates/**/*'], () => {gulpSequence('templates', 'html', 'assets-url', 'server:reload')()});
 });
 
 // Перезагружаем страницу
@@ -141,7 +141,7 @@ gulp.task('server:reload', (done) => {
 });
 
 // Сборка проекта
-gulp.task('build', gulpSequence('clean', 'iconfont', 'assets', ['styles', 'templates'], 'assets-url', 'html'));
+gulp.task('build', gulpSequence('clean', 'iconfont', 'assets', ['styles', 'templates'], 'html', 'assets-url'));
 
 // Режим разработки
 gulp.task('dev', gulpSequence('build', 'server', 'watch'));
