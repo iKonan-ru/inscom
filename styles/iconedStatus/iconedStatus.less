@@ -1,0 +1,22 @@
+@import 'iconedStatus__vars';
+
+.iconedStatus {
+    display: inline-block;
+    ._t__use(@_t__14_20_bold_normal);
+
+    each(.iconedStatus__icons(), {
+        @iconName: ~'_i__status_@{key}';
+
+        &_@{key} {
+            ._i__use(@@iconName, 16px, 20px);
+
+            &::before {
+                color: @value;
+            }
+        }
+    });
+
+    &::before {
+        margin-right: 6px;
+    }
+}

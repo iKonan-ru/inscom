@@ -1,0 +1,159 @@
+{% extends 'includes/layout.twig' %}
+
+{% set pageTitle = 'Группы работ' %}
+{% set activeMainMenuItem = 'balance' %}
+
+{% block content %}
+    {% embed 'includes/filterBox.twig' %}
+        {% set blockClass = 'filterBox' %}
+        {% block leftSide %}
+            {% include 'includes/tabs.twig' with {
+                tabs: [
+                    {caption: 'Товары', active: true},
+                    {caption: 'Дистрибьюторы'},
+                    {caption: 'Регионы'}
+                ]
+            } %}
+        {% endblock %}
+        {% block rightSide %}
+            {% include 'includes/searchInput.twig' with {parentClass: blockClass, placeholder: 'Искать по названию или артикулу'} %}
+        {% endblock %}
+        {% block filtersBlock %}
+            <div class="{{ bem(blockClass, 'leftSide') }}">
+                {% include 'includes/searchInput.twig' with {parentClass: blockClass, placeholder: 'Поиск оборудования'} %}
+            </div>
+            <div class="{{ bem(blockClass, 'rightSide') }}">
+                {% include 'includes/button.twig' with {parentClass: blockClass, text: 'Фильтровать', style: 'dark'} %}
+                {% include 'includes/button.twig' with {parentClass: blockClass, text: 'Сбросить', style: 'light'} %}
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+    {% set tableData = {
+        types: ['balance', 'bordered'],
+        head: [
+            [
+                {id: 'name', text: 'Наименование', rowspan: 2},
+                {id: 'articul', text: 'Артикул', rowspan: 2},
+                {id: 'city', text: 'Город', rowspan: 2},
+                {id: 'balance_norm', text: 'Остаток нормативный'},
+                {id: 'balance_fact', text: 'Остаток фактический', colspan: 3},
+                {id: 'reserve', text: 'Резерв', colspan: 3},
+                {id: 'waiting', text: 'Ожидание', colspan: 3}
+            ],
+            [
+                {id: 'pallet', text: 'паллет'},
+                {id: 'pallet', text: 'паллет'},
+                {id: 'pieces', text: 'штук'},
+                {id: 'money', text: 'рублей'},
+                {id: 'pallet', text: 'паллет'},
+                {id: 'pieces', text: 'штук'},
+                {id: 'money', text: 'рублей'},
+                {id: 'pallet', text: 'паллет'},
+                {id: 'pieces', text: 'штук'},
+                {id: 'money', text: 'рублей'}
+            ]
+        ],
+        body: [
+            {
+                expandable: true,
+                cells: [
+                    {
+                        type: 'photoLink',
+                        text: '031-665-052 Electronic Distribution',
+                        innerList: ['', '']
+                    },
+                    {text: '703781', innerList: ['', '']},
+                    {
+                        type: 'dropdown',
+                        text: 'Все города',
+                        expanded: 'right small',
+                        innerList: ['<a href="#">Смоленск</a>', '<a href="#">Архангельск</a>']
+                    },
+                    {text: '200', innerList: ['150', '50']},
+                    {text: '3000', innerList: ['2500', '500']},
+                    {text: '5000', innerList: ['1000', '4000']},
+                    {text: '50', innerList: ['50', '0']},
+                    {text: '3000', innerList: ['2000', '1000']},
+                    {text: '5000', innerList: ['3000', '2000']},
+                    {text: '50', innerList: ['50', '10']},
+                    {text: '1', innerList: ['0', '1']},
+                    {text: '1', innerList: ['1', '0']},
+                    {text: '2000', innerList: ['1000', '1000']}
+                ]
+            },
+            {
+                cells: [
+                    {type: 'photoLink', text: '140215 _"Диск с записью Гарик Сукачев"'},
+                    {text: '703781'}, {text: 'Москва'}, {text: '200'}, {text: '1000'}, {text: '1000'}, {text: '50'},
+                    {text: '1000'}, {text: '1000'}, {text: '50'}, {text: '1'}, {text: '1'}, {text: '2000'}
+                ]
+            },
+            {
+                cells: [
+                    {type: 'photoLink', text: '140261 _"Полка и решетка малые"'},
+                    {text: '703781'}, {text: 'Москва'}, {text: '200'}, {text: '1000'}, {text: '1000'}, {text: '50'},
+                    {text: '1000'}, {text: '1000'}, {text: '50'}, {text: '2'}, {text: '1'}, {text: '2000'}
+                ]
+            },
+            {
+                cells: [
+                    {type: 'photoLink', text: '140215 _"Диск с записью Гарик Сукачев"'},
+                    {text: '703781'}, {text: 'Москва'}, {text: '200'}, {text: '1000'}, {text: '1000'}, {text: '50'},
+                    {text: '1000'}, {text: '1000'}, {text: '50'}, {text: '0'}, {text: '1'}, {text: '2000'}
+                ]
+            },
+            {
+                cells: [
+                    {type: 'photoLink', text: '140261 _"Полка и решетка малые"'},
+                    {text: '703781'}, {text: 'Москва'}, {text: '200'}, {text: '1000'}, {text: '1000'}, {text: '50'},
+                    {text: '1000'}, {text: '1000'}, {text: '50'}, {text: '5'}, {text: '1'}, {text: '2000'}
+                ]
+            },
+            {
+                cells: [
+                    {type: 'photoLink', text: '140261 _"Полка и решетка малые"'},
+                    {text: '703781'}, {text: 'Москва'}, {text: '200'}, {text: '1000'}, {text: '1000'}, {text: '50'},
+                    {text: '1000'}, {text: '1000'}, {text: '50'}, {text: '1'}, {text: '1'}, {text: '2000'}
+                ]
+            },
+            {
+                cells: [
+                    {type: 'photoLink', text: '140215 _"Диск с записью Гарик Сукачев"'},
+                    {text: '703781'}, {text: 'Москва'}, {text: '200'}, {text: '1000'}, {text: '1000'}, {text: '50'},
+                    {text: '1000'}, {text: '1000'}, {text: '50'}, {text: '2'}, {text: '1'}, {text: '2000'}
+                ]
+            },
+            {
+                cells: [
+                    {type: 'photoLink', text: '140261 _"Полка и решетка малые"'},
+                    {text: '703781'}, {text: 'Москва'}, {text: '200'}, {text: '1000'}, {text: '1000'}, {text: '50'},
+                    {text: '1000'}, {text: '1000'}, {text: '50'}, {text: '3'}, {text: '1'}, {text: '2000'}
+                ]
+            },
+            {
+                cells: [
+                    {type: 'photoLink', text: '140261 _"Полка и решетка малые"'},
+                    {text: '703781'}, {text: 'Москва'}, {text: '200'}, {text: '1000'}, {text: '1000'}, {text: '50'},
+                    {text: '1000'}, {text: '1000'}, {text: '50'}, {text: '4'}, {text: '1'}, {text: '2000'}
+                ]
+            },
+            {
+                cells: [
+                    {type: 'photoLink', text: '140215 _"Диск с записью Гарик Сукачев"'},
+                    {text: '703781'}, {text: 'Москва'}, {text: '200'}, {text: '1000'}, {text: '1000'}, {text: '50'},
+                    {text: '1000'}, {text: '1000'}, {text: '50'}, {text: '8'}, {text: '1'}, {text: '2000'}
+                ]
+            },
+            {
+                cells: [
+                    {type: 'photoLink', text: '140261 _"Полка и решетка малые"'},
+                    {text: '703781'}, {text: 'Москва'}, {text: '200'}, {text: '1000'}, {text: '1000'}, {text: '50'},
+                    {text: '1000'}, {text: '1000'}, {text: '50'}, {text: '5'}, {text: '1'}, {text: '2000'}
+                ]
+            }
+        ]
+    } %}
+
+    {% include 'includes/table.twig' %}
+{% endblock %}

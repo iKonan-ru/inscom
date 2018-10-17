@@ -24,46 +24,47 @@
         {% endblock %}
     {% endembed %}
 
-    {% include 'includes/table.twig' with {
-        sortable: true,
-        numbered: true,
-        type: 'vocabulary',
-        tableData: {
-            thead: [
-                [
-                    '№',
-                    'Наименование',
-                    'Бренды',
-                    'Код',
-                    'Код'
-                ]
-            ],
-            tbody: [
-                [
-                    'Spreadsheet',
-                    'Ready',
-                    'Apple',
-                    ''
-                ],
-                [
-                    'Spreadsheet',
-                    'Apple Works',
-                    'Apple',
-                    ''
-                ],
-                [
-                    'Spreadsheet',
-                    'Apple Works',
-                    'Apple',
-                    ''
-                ],
-                [
-                    'Spreadsheet',
-                    'Apple Works',
-                    'Apple',
-                    ''
-                ]
+    {% set tableData = {
+        types: ['vocabulary'],
+        head: [
+            [
+                {id: 'index', text: '№', sortable: true},
+                {id: 'name', text: 'Наименование'},
+                {id: 'brands', text: 'Бренды'},
+                {id: 'code', text: 'Код'},
+                {id: 'more'}
             ]
-        }
+        ],
+        body: [
+            {
+                cells: [
+                    {text: '1'},
+                    {type: 'link', text: '60072390_CHOU Premium Base + Front Panel Option 2 + Decorative side panels / Checkout Premium Service'},
+                    {type: 'link', text: 'PMI-Транспорт, PMI-В.Луки, PMI-NNovgorod, PMI-Sankt-Peterburg, PMI-Шатура'},
+                    {text: '96676001930886'},
+                    {type: 'link', textStyle: 'more more_h'}
+                ]
+            },
+            {
+                cells: [
+                    {text: '2'},
+                    {type: 'link', text: '60072390_CHOU Premium Base + Front Panel Option 2 + Decorative side panels / Checkout Premium Service'},
+                    {type: 'link', text: 'PMI-Транспорт, PMI-В.Луки, PMI-NNovgorod, PMI-Sankt-Peterburg, PMI-Шатура'},
+                    {text: '96676001930886'},
+                    {type: 'link', textStyle: 'more more_h'}
+                ]
+            },
+            {
+                cells: [
+                    {text: '3'},
+                    {type: 'link', text: '60072390_CHOU Premium Base + Front Panel Option 2 + Decorative side panels / Checkout Premium Service'},
+                    {type: 'link', text: 'PMI-Транспорт, PMI-В.Луки, PMI-NNovgorod, PMI-Sankt-Peterburg, PMI-Шатура'},
+                    {text: '96676001930886'},
+                    {type: 'link', textStyle: 'more more_h'}
+                ]
+            }
+        ]
     } %}
+
+    {% include 'includes/table.twig' %}
 {% endblock %}

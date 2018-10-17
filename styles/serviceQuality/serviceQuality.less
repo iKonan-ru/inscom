@@ -1,0 +1,30 @@
+@import 'serviceQuality__vars';
+
+.serviceQuality {
+    display: inline-block;
+    ._t__use(@_t__14_20_bold_normal);
+
+    each(.serviceQuality__icons(), {
+        @iconName: ~'_i__smile_@{key}';
+
+        &_@{key} {
+            ._i__use(@@iconName, 20px, 20px);
+
+            &::before {
+                color: @value;
+            }
+        }
+    });
+
+    &_none {
+        ._i__use(@_i__smile_neutral, 20px, 20px);
+
+        &::before {
+            color: @_c__gray_1;
+        }
+    }
+
+    &::before {
+        margin-right: 15px;
+    }
+}

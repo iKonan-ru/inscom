@@ -1,24 +1,77 @@
 {% set blockClass = 'table' %}
 
-<table class="{{ bem(blockClass, [type ? type : '', sortable ? 'sortable' : '']) }} {{ parentClass ? bem(parentClass, blockClass) }}">
-    <thead class="{{ bem(blockClass, 'thead') }}">
-        {% for row in tableData.thead %}
-            <tr class="{{ bem(blockClass, 'theadRow') }}">
+<table class="{{ bem(blockClass, tableData.types) }} {{ parentClass ? bem(parentClass, blockClass) }}">
+    <thead>
+        {% for row in tableData.head %}
+            <tr>
                 {% for cell in row %}
-                    <th class="{{ bem(blockClass, 'theadCell') }}">{{ cell }}</th>
+                    <th class="{{ bem(bem(blockClass, 'cell'), [cell.id, cell.sortable ? 'sortable' : '']) }}"
+                        {% if cell.rowspan %}rowspan="{{ cell.rowspan }}"{% endif %}
+                        {% if cell.colspan %}colspan="{{ cell.colspan }}"{% endif %}
+                    >{{ cell.text }}{% if cell.sortable == 'up' or cell.sortable == 'down' %}
+                        <span class="{{ bem(bem(blockClass, 'sort'), [
+                            cell.sortable == 'up' ? 'up' : (cell.sortable == 'down' ? 'down' : '')
+                        ]) }}"></span>{% endif %}</th>
                 {% endfor %}
             </tr>
         {% endfor %}
     </thead>
+    <tbody>
+        {% for row in tableData.body %}
+            <tr class="{{ row.expandable ? 'expandable expandable_collapsed' }}" {% if row.level %}style="--level-with: {{ row.level }}"{% endif %}>
+                {% for cell in row.cells %}
+                    <td>
+                        {% spaceless %}
 
-    <tbody class="{{ bem(blockClass, 'tbody') }}">
-        {% for key, row in tableData.tbody %}
-            <tr class="{{ bem(blockClass, 'row') }}">
-                {% for cell in row %}
-                    {% if numbered and loop.first %}
-                        <td class="{{ bem(blockClass, 'cell') }}">{{ key + 1}}</td>
-                    {% endif %}
-                    <td class="{{ bem(blockClass, 'cell') }}"><a href="#">{{ cell }}</a></td>
+                            {% if cell.type == 'link' %}
+                                {% if cell.text or cell.textStyle %}
+                                    <a {% if cell.textStyle %}class="{{ cell.textStyle }}"{% endif %} href="#">
+                                        {{ cell.text }}
+                                    </a>
+                                {% endif %}
+                            {% elseif cell.type == 'dropdown' %}
+                                <a class="{{ cell.textStyle }} dropdown" href="#">{{ cell.text }}</a>
+                            {% elseif cell.type == 'status' %}
+                                {% include 'iconedStatus.twig' with {
+                                    status: cell.status, text: not cell.text ? (
+                                        cell.status == 'warning' ? 'Требует проверки' : (
+                                            cell.status == 'process' ? 'В процессе' : 'Завершена'
+                                        )
+                                    ) : cell.text
+                                } %}
+                            {% elseif cell.type == 'iconLink' %}
+                                {% for icon in cell.icons %}
+                                    <span class="{{ bem(blockClass, 'iconWrapper') }}">{% include 'iconLink.twig' with {icon: icon} %}</span>
+                                {% endfor %}
+                            {% elseif cell.type == 'serviceQuality' %}
+                                {% include 'serviceQuality.twig' with {text: cell.text, icon: cell.icon} %}
+                            {% elseif cell.type == 'scheduledText' %}
+                                {% for line in cell.schedule %}
+                                    {% include 'scheduledText.twig' with {title: line.title, value: line.value} %}
+                                {% endfor %}
+                            {% else %}
+                                {% if cell.text or cell.textStyle %}
+                                    {% if cell.type == 'photoLink' %}<a class="photoLink" href="#"></a>{% endif %}
+                                    <span {% if cell.textStyle %}class="{{ cell.textStyle }}"{% endif %}>{{ cell.text }}</span>
+                                {% endif %}
+                            {% endif %}
+
+                        {% endspaceless %}
+
+                        {% if row.expandable and cell.innerList %}
+                            <div class="{{ bem(blockClass, 'hiddenBlock') }}">
+                                <ul>
+                                    {% for item in cell.innerList %}
+                                        <li>{{ item }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        {% if cell.popupData %}
+                            <div class="{{ bem(blockClass, 'cellPopup') }}">{{ cell.popupData }}</div>
+                        {% endif %}
+                    </td>
                 {% endfor %}
             </tr>
         {% endfor %}

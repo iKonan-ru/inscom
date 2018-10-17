@@ -9,7 +9,8 @@ let gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     iconfont = require('gulp-iconfont'),
     iconfontCss = require('gulp-iconfont-css'),
-    replace = require('gulp-replace');
+    replace = require('gulp-replace'),
+    htmlclean = require('gulp-htmlclean');
 
 let runTimestamp = Math.round(Date.now()/1000);
 let fontName = 'Icons';
@@ -116,6 +117,12 @@ gulp.task('templates', () => {
         .pipe(gulp.dest('./build/'));
 });
 
+gulp.task('html', function() {
+    return gulp.src('./build/*.html')
+        .pipe(htmlclean())
+        .pipe(gulp.dest('./build/'));
+});
+
 // Очищаем папку build
 gulp.task('clean', () => {
     return del('build/**/*');
@@ -124,7 +131,7 @@ gulp.task('clean', () => {
 gulp.task('watch', () => {
     gulp.watch(['./styles/**/*'], () => {gulpSequence('styles', 'assets-url', 'server:reload')()});
     gulp.watch(['./assets/**/*'], () => {gulpSequence('assets', 'server:reload')()});
-    gulp.watch(['./templates/**/*'], () => {gulpSequence('templates', 'assets-url', 'server:reload')()});
+    gulp.watch(['./templates/**/*'], () => {gulpSequence('templates', 'assets-url', 'html', 'server:reload')()});
 });
 
 // Перезагружаем страницу
@@ -134,7 +141,7 @@ gulp.task('server:reload', (done) => {
 });
 
 // Сборка проекта
-gulp.task('build', gulpSequence('clean', 'iconfont', 'assets', ['styles', 'templates'], 'assets-url'));
+gulp.task('build', gulpSequence('clean', 'iconfont', 'assets', ['styles', 'templates'], 'assets-url', 'html'));
 
 // Режим разработки
 gulp.task('dev', gulpSequence('build', 'server', 'watch'));

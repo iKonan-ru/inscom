@@ -2,14 +2,14 @@
 
 {% set mainMenuData = [
     {title: 'Работы', type: 'projects'},
-    {title: 'Группы работ', type: 'projectsGroups'},
+    {title: 'Группы работ', type: 'projectsGroups', link: '/projectsGroups.html'},
     {title: 'Склады', type: 'stock'},
     {title: 'Каталоги оборудования', type: 'equipment'},
-    {title: 'План поставок', type: 'delivery'},
+    {title: 'План поставок', type: 'workPlan'},
     {title: 'Центральный заказ', type: 'order'},
-    {title: 'Остатки на дистрибьютерах', type: 'balance'},
-    {title: 'План работ', type: 'workPlan'},
-    {title: 'Справочники', type: 'vocabulary'},
+    {title: 'Остатки на дистрибьютерах', type: 'balance', link: '/balances_goods.html'},
+    {title: 'План работ', type: 'calendar'},
+    {title: 'Справочники', type: 'vocabulary', link: '/vocabulary.html'},
     {title: 'Аналитика', type: 'analytics'},
 ] %}
 
@@ -22,7 +22,7 @@
                 item.type | trim,
                 activeMainMenuItem == item.type ? activeModifier | trim : ''
             ]) }}">
-                <a href="#" class="{{ bem(blockClass, 'link') }}">{{ item.title }}</a>
+                <a href="{{ item.link|default('#') }}" class="{{ bem(blockClass, 'link') }}">{{ item.title }}</a>
             </li>
         {% endfor %}
     </ul>

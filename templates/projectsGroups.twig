@@ -21,52 +21,135 @@
     {% embed 'includes/filterBox.twig' %}
         {% set blockClass = 'filterBox' %}
         {% block leftSide %}
-            {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Загрузить PUSH-заказа', icon: 'add', link: '#'} %}
+            {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Загрузить PUSH-заказа', icon: 'push', link: '#'} %}
         {% endblock %}
         {% block rightSide %}
-            {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Выгрузить имиджи', icon: 'add', link: '#'} %}
+            {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Выгрузить имиджи', icon: 'images', link: '#'} %}
             {% include 'includes/iconedText.twig' with {parentClass: blockClass, text: 'Выгрузить все работы', icon: 'add', link: '#'} %}
         {% endblock %}
     {% endembed %}
 
-    {% include 'includes/table.twig' with {
-        sortable: true,
-        type: 'projects',
-        tableData: {
-            thead: [
-                [
-                    '№',
-                    'Наименование',
-                    'Бренды',
-                    'Код',
-                    'Код'
-                ]
-            ],
-            tbody: [
-                [
-                    'Spreadsheet',
-                    'Ready',
-                    'Apple'
-                ],
-                [
-                    'Spreadsheet',
-                    'Apple Works',
-                    'Apple',
-                    ''
-                ],
-                [
-                    'Spreadsheet',
-                    'Apple Works',
-                    'Apple',
-                    ''
-                ],
-                [
-                    'Spreadsheet',
-                    'Apple Works',
-                    'Apple',
-                    ''
-                ]
+    {% set tableData = {
+        types: ['projects'],
+        head: [
+            [
+                {id: 'index', text: '№', sortable: 'up'},
+                {id: 'brand', text: 'Бренд', sortable: true},
+                {id: 'status', text: 'Статус', sortable: true},
+                {id: 'description', text: 'Описание', sortable: true},
+                {id: 'start', text: 'Размещение', sortable: true},
+                {id: 'finish', text: 'Окончание', sortable: true},
+                {id: 'report', text: 'Отчёт', sortable: true},
+                {id: 'comment', text: 'Комментарий', sortable: true},
+                {id: 'scope', text: 'Кол. работ', sortable: true},
+                {id: 'done', text: 'Выполнено', sortable: true},
+                {id: 'quality', text: 'Уровень сервиса', sortable: true},
+                {id: 'more'}
             ]
-        }
+        ],
+        body: [
+            {
+                level: '0%',
+                cells: [
+                    {type: 'link', text: '12345'},
+                    {text: 'Choco', textStyle: 'bold'},
+                    {type: 'status', status: 'warning'},
+                    {text: 'Доставка в остальные сети Москвы'},
+                    {text: '26.07.2018'},
+                    {type: 'scheduledText', schedule: [
+                        {title: 'План', value: '26.07.2018'},
+                        {title: 'Факт', value: '26.07.2018'}
+                    ]},
+                    {type: 'iconLink', icons: ['xls', 'zip']},
+                    {type: 'link', textStyle: 'small'},
+                    {text: '73'},
+                    {text: '0%'},
+                    {type: 'serviceQuality', text: '0%', icon: 'none'},
+                    {type: 'link', textStyle: 'more more_v'}
+                ]
+            },
+            {
+                level: '0%',
+                cells: [
+                    {type: 'link', text: '12345'},
+                    {text: 'Choco', textStyle: 'bold'},
+                    {type: 'status', status: 'warning'},
+                    {text: 'Доставка в остальные сети Москвы'},
+                    {text: '26.07.2018'},
+                    {type: 'scheduledText', schedule: [
+                        {title: 'План', value: '26.07.2018'},
+                        {title: 'Факт', value: '26.07.2018'}
+                    ]},
+                    {type: 'iconLink', icons: ['xls', 'zip']},
+                    {type: 'link', textStyle: 'small'},
+                    {text: '73'},
+                    {text: '0%'},
+                    {type: 'serviceQuality', text: '0%', icon: 'none'},
+                    {type: 'link', textStyle: 'more more_v'}
+                ]
+            },
+            {
+                level: '45%',
+                cells: [
+                    {type: 'link', text: '12345'},
+                    {text: 'YvesSaintLaurent', textStyle: 'bold'},
+                    {type: 'status', status: 'process'},
+                    {text: 'Доставка в остальные сети Москвы'},
+                    {text: '26.07.2018'},
+                    {type: 'scheduledText', schedule: [
+                        {title: 'План', value: '26.07.2018'},
+                        {title: 'Факт', value: '26.07.2018'}
+                    ]},
+                    {type: 'iconLink', icons: ['xls', 'zip']},
+                    {type: 'link', textStyle: 'small', text: 'Принять у курьера удобно в понедельник после обеда'},
+                    {text: '73'},
+                    {text: '45%'},
+                    {type: 'serviceQuality', text: '15%', icon: 'bad'},
+                    {type: 'link', textStyle: 'more more_v'}
+                ]
+            },
+            {
+                level: '100%',
+                cells: [
+                    {type: 'link', text: '12345'},
+                    {text: 'Safilo', textStyle: 'bold'},
+                    {type: 'status', status: 'success'},
+                    {text: 'Доставка в остальные сети Москвы'},
+                    {text: '26.07.2018'},
+                    {type: 'scheduledText', schedule: [
+                        {title: 'План', value: '26.07.2018'},
+                        {title: 'Факт', value: '26.07.2018'}
+                    ]},
+                    {type: 'iconLink', icons: ['xls', 'zip']},
+                    {type: 'link', textStyle: 'small'},
+                    {text: '73'},
+                    {text: '100%'},
+                    {type: 'serviceQuality', text: '50%', icon: 'neutral'},
+                    {type: 'link', textStyle: 'more more_v'}
+                ]
+            },
+            {
+                level: '25%',
+                cells: [
+                    {type: 'link', text: '12345'},
+                    {text: 'Huggies', textStyle: 'bold'},
+                    {type: 'status', status: 'warning'},
+                    {text: 'Доставка в остальные сети Москвы'},
+                    {text: '26.07.2018'},
+                    {type: 'scheduledText', schedule: [
+                        {title: 'План', value: '26.07.2018'},
+                        {title: 'Факт', value: '26.07.2018'}
+                    ]},
+                    {type: 'iconLink', icons: ['xls', 'zip']},
+                    {type: 'link', textStyle: 'small'},
+                    {text: '73'},
+                    {text: '25%'},
+                    {type: 'serviceQuality', text: '95%', icon: 'good'},
+                    {type: 'link', textStyle: 'more more_v'}
+                ]
+            }
+        ]
     } %}
+
+    {% include 'includes/table.twig' %}
 {% endblock %}

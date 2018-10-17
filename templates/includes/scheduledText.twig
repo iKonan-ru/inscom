@@ -1,0 +1,8 @@
+{% set blockClass = 'scheduledText' %}
+
+{% spaceless %}
+    <p class="{{ blockClass }}">
+        {% if title %}<span class="{{ bem(blockClass, 'title') }}">{{ title }}: </span>{% endif %}
+        {% if value %}<span class="{{ bem(blockClass, 'value') }}">{{ value }}</span>{% endif %}
+    </p>
+{% endspaceless %}
