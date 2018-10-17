@@ -18,7 +18,7 @@
     </thead>
     <tbody>
         {% for row in tableData.body %}
-            <tr class="{{ row.expandable ? 'expandable expandable_collapsed' }}" {% if row.level %}style="--level-with: {{ row.level }}"{% endif %}>
+            <tr class="{{ row.expandable ? 'expandable expandable_collapsed' }}" {% if row.level %}style="--level-width: {{ row.level }}"{% endif %}>
                 {% for cell in row.cells %}
                     <td>
                         {% spaceless %}
@@ -40,9 +40,11 @@
                                     ) : cell.text
                                 } %}
                             {% elseif cell.type == 'iconLink' %}
-                                {% for icon in cell.icons %}
-                                    <span class="{{ bem(blockClass, 'iconWrapper') }}">{% include 'iconLink.twig' with {icon: icon} %}</span>
-                                {% endfor %}
+                                <span class="{{ bem(blockClass, 'iconWrapper') }}">
+                                    {% for icon in cell.icons %}
+                                       {% include 'iconLink.twig' with {icon: icon} %}
+                                    {% endfor %}
+                                </span>
                             {% elseif cell.type == 'serviceQuality' %}
                                 {% include 'serviceQuality.twig' with {text: cell.text, icon: cell.icon} %}
                             {% elseif cell.type == 'scheduledText' %}

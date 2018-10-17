@@ -35,7 +35,6 @@
 
         &__cell {
 
-
             &_sortable {
                 cursor: pointer;
 
@@ -182,10 +181,12 @@
     &__iconWrapper {
         display: inline-block;
         vertical-align: top;
-        width: 20px;
+        font-size: 0;
+        white-space: nowrap;
         text-align: center;
 
-        & + & {
+        & > * + * {
+            width: 20px;
             margin-left: 7px;
         }
     }
@@ -241,6 +242,7 @@
             }
 
             &.arrow_right.arrow_small {
+                text-decoration: none;
                 padding-right: 15px;
                 ._i__use(@_i__arrow_down, 12px, 20px, after);
 
@@ -266,7 +268,10 @@
     }
 
     &_vocabulary {
-        text-align: left;
+
+        th, td {
+            text-align: left;
+        }
 
         thead {
 
@@ -293,7 +298,10 @@
     }
 
     &_projects {
-        text-align: left;
+
+        th, td {
+            text-align: left;
+        }
 
         thead {
 
@@ -312,25 +320,59 @@
 
         tr {
             .relative();
-            background-image: linear-gradient(to right, @_c__table__head 0, @_c__table__head var(--level-with), transparent var(--level-with));
+            background: linear-gradient(
+                to right,
+                @_c__table__head 0,
+                @_c__table__head var(--level-width),
+                transparent var(--level-width)
+            ) fixed;
+            border-bottom: 3px solid @_c__brand_secondary;
+        }
+
+        @-moz-document url-prefix() {
+
+            tr {
+                transform: scale(1);
+                border-bottom: 0 none;
+            }
+
+            td {
+
+                &::before {
+                    .absolute(null, 0, 0);
+                    content: '';
+                    width: 100%;
+                    height: 3px;
+                    background-color: @_c__brand_secondary;
+                }
+            }
         }
 
         td {
-            .relative();
             height: 60px;
             padding-top: 10px;
             padding-bottom: $padding-top;
-            border-bottom: 3px solid @_c__brand_secondary;
             overflow: hidden;
 
             &:first-child {
                 ._t__use(@_t__14_20_bold_normal);
+
+                & > * {
+                    .relative();
+                }
+            }
+
+            &:not(:first-child) {
+                .relative();
             }
         }
     }
 
     &_balance_goods {
-        text-align: center;
+
+        th, td {
+            text-align: center;
+        }
 
         thead > tr:first-child th {
 
@@ -350,7 +392,10 @@
     }
 
     &_balance_region {
-        text-align: center;
+
+        th, td {
+            text-align: center;
+        }
 
         thead > tr:first-child th {
 
